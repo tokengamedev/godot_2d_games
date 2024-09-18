@@ -17,3 +17,14 @@ A standard tic tac toe game built using Godot game engine. The player can play u
 * Multiplayer using WebSockets and Multiplayer API
 * Autoloads
 
+
+## Screen Shots:
+
+Home/MainMenu
+![image](./design/main_menu.png)
+
+GamePlay
+![image](./design/gameplay.png)
+
+Lobby
+![image](./design/lobby.png)
