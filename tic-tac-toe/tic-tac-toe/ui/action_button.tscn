@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://b85m2wo73pkk0"]
+
+[ext_resource type="Texture2D" uid="uid://barr4j1h5mhdb" path="res://assets/images/buttons/action_button.png" id="1_ywxw4"]
+[ext_resource type="Texture2D" uid="uid://3hhg2341dov" path="res://assets/images/buttons/action_button_pressed.png" id="2_qpe6y"]
+[ext_resource type="Texture2D" uid="uid://b1jfc0i2d1ogo" path="res://assets/images/buttons/action_button_hover.png" id="3_lpug5"]
+[ext_resource type="Texture2D" uid="uid://dn517fd6eb55e" path="res://assets/images/buttons/action_button_disabled.png" id="3_mdxty"]
+[ext_resource type="Script" path="res://ui/action_button.gd" id="4_hl0s7"]
+[ext_resource type="FontFile" uid="uid://ql2ikqy6aebg" path="res://assets/fonts/LondrinaSolid-Regular.ttf" id="5_wctrp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_txpoh"]
+resource_local_to_scene = true
+font = ExtResource("5_wctrp")
+font_size = 40
+
+[node name="ActionButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("1_ywxw4")
+texture_pressed = ExtResource("2_qpe6y")
+texture_hover = ExtResource("3_lpug5")
+texture_disabled = ExtResource("3_mdxty")
+script = ExtResource("4_hl0s7")
+label = "Test"
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="Text" type="Label" parent="Margin"]
+layout_mode = 2
+text = "dasdadadadd"
+label_settings = SubResource("LabelSettings_txpoh")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdemonys36cen"]
+
+[ext_resource type="Script" path="res://ui/overlay_dialog.gd" id="1_jglar"]
+[ext_resource type="FontFile" uid="uid://ql2ikqy6aebg" path="res://assets/fonts/LondrinaSolid-Regular.ttf" id="2_l8h6o"]
+[ext_resource type="PackedScene" uid="uid://b85m2wo73pkk0" path="res://ui/action_button.tscn" id="2_r6gbg"]
+
+[sub_resource type="Gradient" id="Gradient_ovo8p"]
+interpolation_mode = 2
+colors = PackedColorArray(0.733333, 0.784314, 0.00784314, 1, 0.32549, 0.427451, 0.0431373, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gerar"]
+gradient = SubResource("Gradient_ovo8p")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_mijxw"]
+base_font = ExtResource("2_l8h6o")
+
+[sub_resource type="LabelSettings" id="LabelSettings_x7jd7"]
+font = SubResource("FontVariation_mijxw")
+font_size = 44
+font_color = Color(1, 0.780392, 0.313726, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oxxbj"]
+font = ExtResource("2_l8h6o")
+font_size = 48
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_offset = Vector2(0, 2)
+
+[node name="OverlayDialog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_jglar")
+
+[node name="Background" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Color" type="TextureRect" parent="Background"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_gerar")
+
+[node name="Control" type="Control" parent="Background"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="HeaderText" type="Label" parent="Background/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.08
+anchor_right = 1.0
+anchor_bottom = 0.08
+offset_top = -0.599998
+offset_bottom = 52.4
+grow_horizontal = 2
+text = "Some "
+label_settings = SubResource("LabelSettings_x7jd7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinnerText" type="Label" parent="Background/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 0.4
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Lost"
+label_settings = SubResource("LabelSettings_oxxbj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = -222.0
+offset_top = -194.0
+offset_right = 222.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 24
+
+[node name="ContinueButton" parent="Background/Control/VBoxContainer" instance=ExtResource("2_r6gbg")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "Continue"
+
+[node name="PlayButton" parent="Background/Control/VBoxContainer" instance=ExtResource("2_r6gbg")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+label = "Play Again"
+
+[node name="ExitButton" parent="Background/Control/VBoxContainer" instance=ExtResource("2_r6gbg")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+label = "Exit"
+
+[connection signal="pressed" from="Background/Control/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Background/Control/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Background/Control/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

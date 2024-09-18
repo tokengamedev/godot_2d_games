@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://chq4rjchb4y3w"]
+
+[ext_resource type="Script" path="res://game/board.gd" id="1_15m58"]
+[ext_resource type="PackedScene" uid="uid://c4rk2y5asomyq" path="res://game/piece.tscn" id="2_rldfy"]
+
+[node name="Board" type="GridContainer"]
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 3
+script = ExtResource("1_15m58")
+
+[node name="Piece" parent="." instance=ExtResource("2_rldfy")]
+layout_mode = 2
+
+[node name="Piece2" parent="." instance=ExtResource("2_rldfy")]
+layout_mode = 2
+
+[node name="Piece3" parent="." instance=ExtResource("2_rldfy")]
+layout_mode = 2
+
+[node name="Piece4" parent="." instance=ExtResource("2_rldfy")]
+layout_mode = 2
+
+[node name="Piece5" parent="." instance=ExtResource("2_rldfy")]
+layout_mode = 2
+
+[node name="Piece6" parent="." instance=ExtResource("2_rldfy")]
+layout_mode = 2
+
+[node name="Piece7" parent="." instance=ExtResource("2_rldfy")]
+layout_mode = 2
+
+[node name="Piece8" parent="." instance=ExtResource("2_rldfy")]
+layout_mode = 2
+
+[node name="Piece9" parent="." instance=ExtResource("2_rldfy")]
+layout_mode = 2

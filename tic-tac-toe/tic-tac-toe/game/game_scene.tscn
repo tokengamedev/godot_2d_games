@@ -1,0 +1,124 @@
+[gd_scene load_steps=15 format=3 uid="uid://bpuitgmifgktw"]
+
+[ext_resource type="Script" path="res://game/game_scene.gd" id="1_01g5y"]
+[ext_resource type="Texture2D" uid="uid://bxyvvxdww3wud" path="res://assets/images/background.png" id="2_tud60"]
+[ext_resource type="Texture2D" uid="uid://cwxadl4m5ku0h" path="res://assets/images/buttons/pause_normal.png" id="5_cwd46"]
+[ext_resource type="FontFile" uid="uid://ql2ikqy6aebg" path="res://assets/fonts/LondrinaSolid-Regular.ttf" id="5_k301a"]
+[ext_resource type="PackedScene" uid="uid://chq4rjchb4y3w" path="res://game/board.tscn" id="5_okehj"]
+[ext_resource type="Texture2D" uid="uid://bm0nnqkb43ice" path="res://assets/images/buttons/pause_pressed.png" id="6_16c0g"]
+[ext_resource type="Texture2D" uid="uid://5vnemr6ukg4u" path="res://assets/images/buttons/pause_hover.png" id="7_i1bux"]
+[ext_resource type="Texture2D" uid="uid://cg3n6weplqxni" path="res://assets/images/ai-opponent.png" id="8_nd0xk"]
+[ext_resource type="PackedScene" uid="uid://cdemonys36cen" path="res://ui/overlay_dialog.tscn" id="9_28yl2"]
+[ext_resource type="PackedScene" uid="uid://cpbpuypite66o" path="res://ui/waiting_dialog.tscn" id="10_glvm2"]
+
+[sub_resource type="FontVariation" id="FontVariation_q87rv"]
+base_font = ExtResource("5_k301a")
+
+[sub_resource type="LabelSettings" id="LabelSettings_fqgms"]
+font = SubResource("FontVariation_q87rv")
+font_size = 48
+font_color = Color(0.952941, 0.952941, 0.952941, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.223529)
+
+[sub_resource type="FontVariation" id="FontVariation_bvns1"]
+base_font = ExtResource("5_k301a")
+
+[sub_resource type="LabelSettings" id="LabelSettings_piv3i"]
+font = SubResource("FontVariation_bvns1")
+font_size = 36
+
+[node name="GameScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_01g5y")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tud60")
+
+[node name="TurnLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your Turn"
+label_settings = SubResource("LabelSettings_fqgms")
+horizontal_alignment = 1
+
+[node name="Board" parent="." instance=ExtResource("5_okehj")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.06
+anchor_right = 0.97
+anchor_bottom = 0.08
+offset_top = -32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PauseButton" type="TextureButton" parent="Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("5_cwd46")
+texture_pressed = ExtResource("6_16c0g")
+texture_hover = ExtResource("7_i1bux")
+metadata/_edit_use_anchors_ = true
+
+[node name="OpponetContainer" type="HBoxContainer" parent="Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+alignment = 2
+
+[node name="OpponentName" type="Label" parent="Header/OpponetContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "AI"
+label_settings = SubResource("LabelSettings_piv3i")
+metadata/_edit_use_anchors_ = true
+
+[node name="OpponentImage" type="TextureRect" parent="Header/OpponetContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("8_nd0xk")
+
+[node name="OverlayDialog" parent="." instance=ExtResource("9_28yl2")]
+visible = false
+layout_mode = 1
+
+[node name="WaitingDialog" parent="." instance=ExtResource("10_glvm2")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Header/PauseButton" to="." method="_on_pause_button_pressed"]

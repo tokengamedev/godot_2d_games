@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4wjvfhhlmvw3"]
+
+[ext_resource type="Script" path="res://main_scene/main_scene.gd" id="1_rpxms"]
+[ext_resource type="Texture2D" uid="uid://b7onjfe4rsp3e" path="res://assets/images/title.png" id="1_x0ghs"]
+[ext_resource type="Texture2D" uid="uid://bxyvvxdww3wud" path="res://assets/images/background.png" id="2_sr3e1"]
+[ext_resource type="PackedScene" uid="uid://b85m2wo73pkk0" path="res://ui/action_button.tscn" id="4_w0lmw"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rpxms")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sr3e1")
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -355.0
+offset_right = 355.0
+offset_bottom = 214.0
+grow_horizontal = 2
+texture = ExtResource("1_x0ghs")
+metadata/_edit_use_anchors_ = true
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.75
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SPlayButton" parent="Menu" instance=ExtResource("4_w0lmw")]
+layout_mode = 2
+label = "Play"
+
+[node name="MPlayButton" parent="Menu" instance=ExtResource("4_w0lmw")]
+layout_mode = 2
+label = "Play with Friends"
+
+[connection signal="pressed" from="Menu/SPlayButton" to="." method="_on_single_player_button_pressed"]
+[connection signal="pressed" from="Menu/MPlayButton" to="." method="_on_multi_player_button_pressed"]

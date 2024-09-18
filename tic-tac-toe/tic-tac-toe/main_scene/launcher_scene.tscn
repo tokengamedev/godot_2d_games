@@ -1,0 +1,132 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwjl7bbqn7gtj"]
+
+[ext_resource type="Script" path="res://main_scene/launcher_scene.gd" id="1_1o52d"]
+[ext_resource type="Texture2D" uid="uid://bxyvvxdww3wud" path="res://assets/images/background.png" id="2_f6j0f"]
+[ext_resource type="FontFile" uid="uid://ql2ikqy6aebg" path="res://assets/fonts/LondrinaSolid-Regular.ttf" id="3_ws41d"]
+[ext_resource type="Texture2D" uid="uid://bk0q7jfmhyqda" path="res://assets/images/empty_piece.png" id="4_o51rm"]
+[ext_resource type="Texture2D" uid="uid://dpb2ivfnnmhn0" path="res://assets/images/x_piece.png" id="5_jovro"]
+[ext_resource type="Texture2D" uid="uid://cj7eekdhikryl" path="res://assets/images/o_piece.png" id="6_vscsx"]
+[ext_resource type="PackedScene" uid="uid://b85m2wo73pkk0" path="res://ui/action_button.tscn" id="7_tkn80"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5m4yr"]
+font = ExtResource("3_ws41d")
+font_size = 53
+font_color = Color(1, 0.85098, 0.533333, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6bp6d"]
+font = ExtResource("3_ws41d")
+font_size = 40
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_offset = Vector2(0, 2)
+
+[node name="LauncherScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1o52d")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_f6j0f")
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 0.15
+offset_bottom = 64.0
+grow_horizontal = 2
+text = "Starting Game"
+label_settings = SubResource("LabelSettings_5m4yr")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Markers" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.42
+anchor_right = 0.5
+anchor_bottom = 0.42
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_o51rm")
+
+[node name="XMark" type="TextureRect" parent="Markers"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_jovro")
+
+[node name="OMark" type="TextureRect" parent="Markers"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_vscsx")
+
+[node name="DisplayText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.6
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your Mark"
+label_settings = SubResource("LabelSettings_6bp6d")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StartButton" parent="." instance=ExtResource("7_tkn80")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.834028
+anchor_right = 0.5
+anchor_bottom = 0.834028
+offset_left = -222.0
+offset_top = -42.5
+offset_right = 222.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+label = "Start"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

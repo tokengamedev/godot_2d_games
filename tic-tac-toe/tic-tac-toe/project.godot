@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Tic Tac Toe"
+config/description="Simple Tic Tac toe game to be played with Ai or friends"
+run/main_scene="res://main_scene/main_scene.tscn"
+config/features=PackedStringArray("4.3", "Mobile")
+config/icon="res://ticitactoe.png"
+
+[autoload]
+
+Global="*res://autoloads/global.gd"
+GameManager="*res://autoloads/game_manager.gd"
+Lobby="*res://autoloads/lobby.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "teal",
+"res://autoloads/": "orange",
+"res://common/": "orange",
+"res://game/": "orange",
+"res://main_scene/": "orange",
+"res://ui/": "orange"
+}
+
+[rendering]
+
+renderer/rendering_method="mobile"

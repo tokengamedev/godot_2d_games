@@ -1,0 +1,154 @@
+[gd_scene load_steps=9 format=3 uid="uid://gdpmj1rtcevn"]
+
+[ext_resource type="Script" path="res://main_scene/lobby_scene.gd" id="1_4g62l"]
+[ext_resource type="Texture2D" uid="uid://bxyvvxdww3wud" path="res://assets/images/background.png" id="2_5jhwb"]
+[ext_resource type="FontFile" uid="uid://ql2ikqy6aebg" path="res://assets/fonts/LondrinaSolid-Regular.ttf" id="3_tkuc8"]
+[ext_resource type="PackedScene" uid="uid://b85m2wo73pkk0" path="res://ui/action_button.tscn" id="4_nk4io"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rp7h3"]
+font = ExtResource("3_tkuc8")
+font_size = 53
+font_color = Color(1, 0.85098, 0.533333, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5gjc"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(1, 0.92549, 0.784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.843137, 0.345098, 0.0392157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cup2a"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(0.543, 0.543, 0.543, 0.3)
+border_color = Color(0.843137, 0.345098, 0.0392157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_hvd1l"]
+font = ExtResource("3_tkuc8")
+font_size = 40
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_offset = Vector2(1, 2)
+
+[node name="LobbyScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4g62l")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_5jhwb")
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.1
+offset_bottom = 64.0
+grow_horizontal = 2
+text = "Lobby"
+label_settings = SubResource("LabelSettings_rp7h3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerNameEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.32
+anchor_right = 0.5
+anchor_bottom = 0.32
+offset_left = -165.0
+offset_top = -31.0
+offset_right = 176.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0.886275, 0.364706, 0.0352941, 1)
+theme_override_colors/font_placeholder_color = Color(0.632813, 0.24496, 0, 0.239216)
+theme_override_colors/font_uneditable_color = Color(0.714844, 0.441012, 0.268066, 1)
+theme_override_colors/font_color = Color(0.886275, 0.364706, 0.0352941, 1)
+theme_override_fonts/font = ExtResource("3_tkuc8")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_s5gjc")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_cup2a")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s5gjc")
+placeholder_text = "Enter name"
+alignment = 1
+max_length = 32
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Actions" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.5
+anchor_bottom = 0.6
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+
+[node name="StartGameButton" parent="Actions" instance=ExtResource("4_nk4io")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "Start Game"
+
+[node name="JoinGameButton" parent="Actions" instance=ExtResource("4_nk4io")]
+unique_name_in_owner = true
+layout_mode = 2
+label = "Join Game"
+
+[node name="StatusText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 0.75
+offset_bottom = 64.0
+grow_horizontal = 2
+text = "Lobby"
+label_settings = SubResource("LabelSettings_hvd1l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Actions/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Actions/JoinGameButton" to="." method="_on_join_game_button_pressed"]
